@@ -73,7 +73,7 @@ let fold_parany ?number_of_reads ?(specific_reads=[]) ~nprocs ~map ~mux file =
             end
     in
     let demux () = read () in
-    Parany.run ~verbose:false ~csize:1 ~nprocs ~demux ~work:map ~mux)
+    Parany.run ~csize:1 nprocs ~demux ~work:map ~mux)
 
 let all ?number_of_reads file =
   fold ?number_of_reads
@@ -318,7 +318,7 @@ let fold_paired_parany ?number_of_reads ?(specific_reads=[])
               incr count_r;
               Util.Sp.Single h
       in
-      Parany.run ~verbose:false ~csize:1 ~nprocs ~demux:read ~work:map ~mux))
+      Parany.run ~csize:1 nprocs ~demux:read ~work:map ~mux))
 
 let read_from_pair ~name file1 file2 =
   let res =
